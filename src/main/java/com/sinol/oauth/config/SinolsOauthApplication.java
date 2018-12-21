@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("com.lionrocks")
-@EnableJpaRepositories("com.lionrocks")
-@ComponentScan("com.lionrocks")
+@EntityScan("com.sinol")
+@EnableJpaRepositories("com.sinol")
+@ComponentScan("com.sinol")
 public class SinolsOauthApplication {
 
 	public static void main(String[] args) {

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -28,22 +29,25 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	@Qualifier("dataSource")
 	private DataSource dataSource;
 
+	@Autowired
+	private UserDetailsService userDetailsService;
+
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore()).accessTokenConverter(accessTokenConverter())
-				.authenticationManager(authenticationManager);
+				.authenticationManager(authenticationManager).userDetailsService(userDetailsService);
 	}
 
 	@Bean
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}
-	
+
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
@@ -65,7 +69,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 		defaultTokenServices.setSupportRefreshToken(true);
 		return defaultTokenServices;
 	}
-	
+
 	@Bean
 	public PasswordEncoder userPasswordEncoder() {
 		return new BCryptPasswordEncoder(4);
