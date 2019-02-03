@@ -64,12 +64,6 @@ public class OauthClientDetails {
 	@Column(columnDefinition ="boolean default true")
 	private Boolean enabled;
 	
-	@Column
-	private String rawClientSecret;
-	
-	@Column(name="apiKey")
-	private String apiKey;
-	
 	@Transient
 	private String[] scopes;
 	
@@ -181,22 +175,6 @@ public class OauthClientDetails {
 
 	public void setAutoapprove(Integer autoapprove) {
 		this.autoapprove = autoapprove;
-	}
-
-	public String getRawClientSecret() {
-		return rawClientSecret;
-	}
-
-	public void setRawClientSecret(String rawClientSecret) {
-		this.rawClientSecret = rawClientSecret;
-	}
-
-	public String getApiKey() {
-		return apiKey;
-	}
-
-	public void setApiKey(String apiKey) {
-		this.apiKey = apiKey;
 	}
 
 	public String getUuid() {
