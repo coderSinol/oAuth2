@@ -225,5 +225,6 @@ public class OauthClientDetails {
 		this.ownerEmail = ownerEmail;
 	}
 	
+	
 }
 
