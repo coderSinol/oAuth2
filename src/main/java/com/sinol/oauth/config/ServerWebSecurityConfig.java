@@ -17,14 +17,4 @@ public class ServerWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/oauth/check_token", "/oauth/token", "/oauth/authorize", "login", "/internal").permitAll()
-				.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll()
-				.logoutSuccessUrl("/login");
-		// @formatter:on
-	}
-
 }
