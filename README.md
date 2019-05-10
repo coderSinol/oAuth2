@@ -1,7 +1,7 @@
 # oAuth2
 Implements spring oauth2 with JWT token store
 
-The required spring oauth data structure is created as an JPA entities. 
+The required spring oauth data structure is created as JPA entities. 
 
 How to run
 =========================================================================
